@@ -12,11 +12,18 @@ const PostsList: React.FC<PostsListProps> = (props: PostsListProps) => {
         <div>
             {props.posts.map(post => 
                 (<div key={post.id}>
+                    {post.postedBy.username}
                     <img className='setimage' src={post.imageUrl} />
                     {post.message}
                     {/* {post.createdAt} */}
-                    {post.likedBy.length}
-                    {post.dislikedBy.length}
+                    {/* {post.likedBy.length} */}
+                    <div>Liked By: {post.likedBy.map(user => (
+                        <div key={user.id}>{user.username} </div>
+                    ))}</div>
+                    {/* {post.dislikedBy.length} */}
+                    <div>Disliked By: {post.dislikedBy.map(user => (
+                        <div key={user.id}>{user.username} </div>
+                    ))}</div>
                 
                 </div>)
             )}
