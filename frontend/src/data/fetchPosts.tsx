@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
+import PostsList from "./../posts/PostsList";
+// import {PostModel} from '../../../src/models/api/postModel.ts';
 
 // Define the type for your data
-type DataType = {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-};
+
+interface PostUserModel {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+}
+export interface PostModel {
+    id: number;
+    message: string;
+    imageUrl: string;
+    createdAt: moment.Moment;
+    postedBy: PostUserModel;
+    likedBy: PostUserModel[];
+    dislikedBy: PostUserModel[];
+}
+
 
 const Myfetch: React.FC = () => {
-  const [data, setData] = useState<DataType | null>(null);
+  const [data, setData] = useState<PostModel[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -22,10 +36,16 @@ const Myfetch: React.FC = () => {
         }
         return response.json();
       })
-      .then((data: DataType) => {
-        setData(data);
+      .then(json => {
+        const results = json.results;
+        setData(results);
         setIsLoading(false);
-      })
+        
+      }) 
+      // .then((data: PostModel[]) => {
+      //   setData(data);
+      //   setIsLoading(false);
+      // })
       .catch((error: Error) => {
         setError(error);
         setIsLoading(false);
@@ -51,11 +71,14 @@ const Myfetch: React.FC = () => {
     return null;
   }
 
+  console.log(data);
+
   // Render your component with data
   return (
     <div>
       {/* Render your data here */}
-      display our posts here ...
+      check console.log for how the data is retreived  ...
+      <PostsList posts={data}/>
     </div>
   );
 };
