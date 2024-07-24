@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon",
     "migrate": "knex migrate:latest",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "dev": "vite --host"
   },
   "author": "",
   "license": "ISC",
