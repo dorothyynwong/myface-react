@@ -1,0 +1,22 @@
+.setimage {
+    max-width: 40px;
+    max-height: 40px;
+}
+
+@mixin container($color: white) {
+background-color: $color;
+font-size: medium;
+}
+
+@mixin likedby ($color: rgb(99, 11, 45))
+{
+    flex-direction: row;
+    font-style: italic;
+    border: 1px solid $color;
+}
+
+.dislikedby
+{
+    @include likedby (green);
+
+}
