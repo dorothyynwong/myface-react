@@ -18,9 +18,10 @@ font-size: medium;
     font-style: italic;
     border: 5px solid $color;
 }
-.setimage {
+.setimage 
+{
     @include images(40px);
-    }
+}
     
 .likedby
 {

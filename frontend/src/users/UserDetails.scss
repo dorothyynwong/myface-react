@@ -1,13 +1,19 @@
 @use "../posts/PostsList.scss";
 
-@mixin images($width) {
-    width: $width;
-}
+// @mixin images($width) {
+//     width: $width;
+// }
+
+$border-color: pink;
 
 .coverImage {
-    @include images(100px);
+    @include PostsList.images(100px);
 }
 
 .profileImage {
-    @include images(50px);
+    @include PostsList.images(50px);
+    border: solid 3px $border-color;
+    &:hover {
+      border-color: darken($border-color, 30%);
+    }
 }

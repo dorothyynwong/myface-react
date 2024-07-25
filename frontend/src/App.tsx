@@ -4,12 +4,13 @@ import viteLogo from '/vite.svg' */
 import './App.scss'
 import Myfetch from './data/fetchPosts.tsx'
 import FetchUser from './data/fetchUserDetails.tsx'
+import {CreateUserDetailForm} from './users/CreateUserDetailForm.tsx'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 
 
 function App() {
-  const [count, setCount] = useState(0);
-  const userId = "1";
+  // const [count, setCount] = useState(0);
+  // const userId = "1";
 //  <Link to={`/user/${userId}`}>Go to User Details</Link>
   return (
     <>
@@ -21,6 +22,8 @@ function App() {
           element={<Myfetch/>}/>
         <Route path="/users/:userId"
           element={<FetchUser />}/>
+        <Route path="/create_user" 
+          element={<CreateUserDetailForm />}/>
         <Route path="*"
           element={<div>
              Sorry - that page doesn't exist, try these:

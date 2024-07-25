@@ -19,6 +19,7 @@ export const CreateUserDetailForm: React.FC = () => {
         const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault(); // to stop the form trying to submit normally and hence you can create your own post request to the backend API
             // Process formState here 
+            // console.log('before setting ip the postData',formState.name,formState.username)
             const postData = new FormData();
             postData.append('name', formState.name);
             postData.append('username', formState.username);
@@ -26,16 +27,20 @@ export const CreateUserDetailForm: React.FC = () => {
             postData.append('profileImageUrl', formState.profileImageUrl);
             postData.append('coverImageUrl', formState.coverImageUrl);
         
-            fetch('/users/create', {
-              method: 'POST',
+            // console.log('postData :',postData)
+            const postUrl = "http://localhost:3001/users/create"
+            fetch(postUrl, {
+              method: 'post',
               body: postData,
             })
               .then((response) => response.json())
               .then((data) => {
                 // Handle the response data
+                console.log('inside the data', data)
               })
               .catch((error) => {
                 // Handle any errors
+                console.log('there is an error', error)
               });
             console.log(formState);
           };
@@ -53,7 +58,11 @@ export const CreateUserDetailForm: React.FC = () => {
           };
 
     return (
-    <form onSubmit={handleSubmit}>
+      
+      // <form method='post' action='http://localhost:3001/users/create'> 
+      <form onSubmit={handleSubmit}>
+
+ 
         <input
         type="text"
         name="name"
