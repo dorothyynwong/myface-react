@@ -1,0 +1,13 @@
+@use "../posts/PostsList.scss";
+
+@mixin images($width) {
+    width: $width;
+}
+
+.coverImage {
+    @include images(100px);
+}
+
+.profileImage {
+    @include images(50px);
+}

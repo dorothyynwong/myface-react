@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/* import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg' */
+import './App.scss'
 import Myfetch from './data/fetchPosts.tsx'
 import FetchUser from './data/fetchUserDetails.tsx'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';

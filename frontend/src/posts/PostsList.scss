@@ -1,22 +1,35 @@
-.setimage {
-    max-width: 40px;
-    max-height: 40px;
+
+@mixin images($width) {
+    width: $width;
 }
 
-@mixin container($color: white) {
+@mixin containerdetails($color: rgb(43, 144, 175)) {
 background-color: $color;
 font-size: medium;
 }
 
-@mixin likedby ($color: rgb(99, 11, 45))
+.container { 
+    @include containerdetails();
+}
+
+@mixin detailsection ($color: rgb(99, 11, 45))
 {
     flex-direction: row;
     font-style: italic;
-    border: 1px solid $color;
+    border: 5px solid $color;
+}
+.setimage {
+    @include images(40px);
+    }
+    
+.likedby
+{
+    @include detailsection();
+
 }
 
 .dislikedby
 {
-    @include likedby (green);
+    @include detailsection(green);
 
 }
