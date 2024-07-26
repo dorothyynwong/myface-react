@@ -88,11 +88,9 @@ console.log(userUrl)
 
   // Render your component with data
   return (
-    <div>
-      {/* Render your data here */}
-      check console.log for how the data is retreived  ...
+    <>
       <UserDetails userDetails={data}/>
-    </div>
+    </>
   );
 };
 

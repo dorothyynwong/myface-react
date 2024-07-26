@@ -18,73 +18,42 @@
 //     }
 // }
 /* Add your styles here. */
-@keyframes MY_ANIMATION 
-{
- 0% { background: green 
-}
- 25% { background: red 
-}
- 75% { background: purple 
-}
- 100% { background: yellow 
-}
-}
 
+@use "../../public/styles.scss";
 
-.menuPadHidden {
-  display : none;
-}
-
-.menuPadShow {
-  animation: MY_ANIMATION 4s;
-  position: absolute;
-  display : flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  background: #252A38;
-  opacity: 90%;
-  gap: 30px;
-}
-
-.menuLink{
-  font-weight: 400;
-  font-size: 24px;
-}
-
-
-body {
-  background : #252A38;
-  color: #DCDCDC;
-  font-family: Segoe UI;
-  font-weight: 400;
-  font-size:  14px;
-  line-height: 20px;
-
-}
+$bkg: #252A38;
+$darker-bkg: #141820;
+$default-fgd: #DCDCDC;
+$primary: #2985FF;
+$font-family: Segoe UI;
+$font-weight-regular: 400;
+$font-weight-bold: 600;
+$font-weight-lighter: 300;
+$font-size-tile: 24px;
+$font-size-subtitle: 20px;
+$font-size-button: 20px;
+$font-size-body: 14px;
+$font-size-secondary: 10px;
+$line-height-title: 24px;
+$line-height-subtitle: 24px;
+$line-height-button: 32px;
+$line-height-body: 20px;
+$line-height-secondary: 16px;
 
 .postedBy {
-  font-weight: 600;
+  font-weight: $font-weight-bold;
 }
 
 .createdAt {
-  font-weight: 300;
-  font-size:  10px;
-  line-height: 16px;
+  font-weight: $font-weight-lighter;
+  font-size:  $font-size-secondary;
+  line-height: $line-height-secondary;
 }
 
 .buttonBox button {
-  font-size: 20px;
-  line-height: 32px;
+  font-size: $font-size-button;
+  line-height: $line-height-button;
 }
-
-/* .message {
-  font-size:  14px;
-} */
 
 a:hover {
   color: #2985FF;
@@ -297,12 +266,10 @@ body {
 
 .userPosts {
   display: flex;
-  flex-direction: row;
-  /* justify-content: flex-start;
-  align-items: flex-start;  */
+  // flex-direction: row;
   overflow-x: auto;
   flex-wrap: nowrap;
-  padding : 24px;
+  // padding : 24px;
 }
 
 .userSinglePost {
@@ -315,4 +282,28 @@ body {
 
 .userSinglePost img {
   width: 300px;
+}
+
+
+.userDetails {
+  background : #252A38;
+  color: #DCDCDC;
+  font-family: Segoe UI;
+  font-weight: 400;
+  font-size:  14px;
+  line-height: 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.postsSession {
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
 }

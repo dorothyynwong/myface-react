@@ -2,6 +2,7 @@
 import {UserModel} from './../data/fetchUserDetails.tsx';
 import React from "react";
 import "./UserDetails.scss"
+import "./../../public/styles.scss"
 // import { BrowserRouter as Router, Route, Routes, Link, useParams } from 'react-router-dom';
 
 interface UserDetailsProps {
@@ -19,8 +20,8 @@ const UserDetails: React.FC<UserDetailsProps> = (props: UserDetailsProps) => {
     const splitName = props.userDetails.name.split(' ')[0];
 
     return (
-        <div className='container'>
-            {/* <div className="profileSession"> */}
+        <div className='userDetails'>
+            <div className="profileSession">
                 <div className="imageParent">
                     <img className="coverImage" src={props.userDetails.coverImageUrl} alt="cover image"/>
                     <div className="profilePad"></div>
@@ -29,8 +30,8 @@ const UserDetails: React.FC<UserDetailsProps> = (props: UserDetailsProps) => {
                     <div className="username">{props.userDetails.username}</div>
                     <div className="email">{props.userDetails.email}</div>
                 </div>
-            {/* </div> */}
-            <div>
+            </div>
+            <div className="postsSession">
                 <h1>{splitName}'s Posts</h1>
                 <div className="userPosts">
                     {props.userDetails.posts.map(post => (
