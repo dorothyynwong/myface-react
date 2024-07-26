@@ -15,8 +15,6 @@ function App() {
   return (
     <>
     <Router>
-      <h1>MyFace</h1>
-
       <Routes>
         <Route path="/posts"
           element={<Myfetch/>}/>

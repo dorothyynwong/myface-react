@@ -18,9 +18,29 @@ interface UserDetailsProps {
 const UserDetails: React.FC<UserDetailsProps> = (props: UserDetailsProps) => {
     // const UserDetails: React.FC = () => {
     const splitName = props.userDetails.name.split(' ')[0];
+    const displayMenu = () => {
+        let menuPad = document.getElementById("menuPad");
+        if (menuPad) {
+            const displayValue = menuPad.className;
+            if (displayValue === "menuPadHidden")  menuPad.setAttribute("class","menuPadShow");
+            else  menuPad.setAttribute("class","menuPadHidden");
+        }
+    }
 
     return (
         <div className='userDetails'>
+                <nav>
+                <button id="menuButton" className="hamburger" onClick={() => displayMenu()}>
+                        <span className="line"></span>
+                        <span className="line"></span>
+                        <span className="line"></span>
+                </button>
+                <div className="menuPadHidden" id="menuPad">
+                    <a className="menuLink" href="/users/1">Home</a>
+                    <a className="menuLink" href="/posts">Posts</a>
+                    <a className="menuLink" href="/users">Users</a>
+                </div>
+                </nav>
             <div className="profileSession">
                 <div className="imageParent">
                     <img className="coverImage" src={props.userDetails.coverImageUrl} alt="cover image"/>
@@ -46,12 +66,6 @@ const UserDetails: React.FC<UserDetailsProps> = (props: UserDetailsProps) => {
                     ))}
                 </div>
             </div>
-            {/* <img className="coverImage" src={props.userDetails.coverImageUrl} />
-            <img className="profileImage" src={props.userDetails.profileImageUrl} />
-            {props.userDetails.id}
-            {props.userDetails.name}
-            {props.userDetails.username}
-            {props.userDetails.email} */}
         </div>
     );
 
