@@ -20,7 +20,7 @@ router.post('/create/',
     body('coverImageUrl').notEmpty(),
     body('profileImageUrl').notEmpty(),
     async (request, response) => {
-console.log(request.body);
+// console.log(request.body);
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
         return response.status(400).json({errors: errors.array()});

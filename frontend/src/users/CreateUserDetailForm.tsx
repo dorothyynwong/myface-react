@@ -13,6 +13,7 @@ export const CreateUserDetailForm: React.FC = () => {
     const [formState, setFormState] = useState<CreateUserRequest>({ name: '', username: "", email: "",
         profileImageUrl: "",
         coverImageUrl: ""});
+    const [msgState, setMsgState] = useState<string>('');
   
         //React.FormEvent<HTMLFormElement> is a type that represents an event object associated with form elements. 
         // Specifically, it's an event object that's triggered when a form is submitted
@@ -24,16 +25,31 @@ export const CreateUserDetailForm: React.FC = () => {
             postData.append('name', formState.name);
             postData.append('username', formState.username);
             postData.append('email', formState.email);
+            postData.append('coverImageUrl', formState.coverImageUrl);            
             postData.append('profileImageUrl', formState.profileImageUrl);
-            postData.append('coverImageUrl', formState.coverImageUrl);
         
             // console.log('postData :',postData)
             const postUrl = "http://localhost:3001/users/create"
             fetch(postUrl, {
               method: 'post',
-              body: postData,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({  name: formState.name,
+                username: formState.username,
+                email: formState.email,
+                coverImageUrl: formState.profileImageUrl,
+                profileImageUrl: formState.coverImageUrl,}),
             })
-              .then((response) => response.json())
+              .then((response) => {
+                if(response.status === 200) {
+                  setMsgState(`User ${formState.username} is created successfully`);
+                  setFormState({ name: '', username: "", email: "",
+                    profileImageUrl: "",
+                    coverImageUrl: ""});
+                }
+              }
+            )
               .then((data) => {
                 // Handle the response data
                 console.log('inside the data', data)
@@ -58,40 +74,50 @@ export const CreateUserDetailForm: React.FC = () => {
           };
 
     return (
-      
+
       // <form method='post' action='http://localhost:3001/users/create'> 
       <form onSubmit={handleSubmit}>
-
- 
+      <div>{msgState}</div>
         <input
         type="text"
         name="name"
         value={formState.name}
         onChange={handleInputChange}
+        placeholder="Enter your name"
       />
       <input
-        type="UserName"
+        type="text"
         name="username"
         value={formState.username}
         onChange={handleInputChange}
+        required 
+        pattern="[a-z]{2,8}" 
+        title="should be lowercase length 2-8 chars"
+        placeholder="Enter your user name"
       />
     <input
         type="email"
         name="email"
         value={formState.email}
         onChange={handleInputChange}
+        required
+        placeholder="Enter your email"
       />
         <input
-        type="profileImageUrl"
+        type="url"
         name="profileImageUrl"
         value={formState.profileImageUrl}
         onChange={handleInputChange}
+        required
+        placeholder="Enter your Profile Image URL"
       />
         <input
-        type="coverImageUrl"
+        type="url"
         name="coverImageUrl"
         value={formState.coverImageUrl}
         onChange={handleInputChange}
+        required
+        placeholder="Enter your Cover Image URL"
       />
       <button type="submit">Submit</button>
     </form>

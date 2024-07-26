@@ -6,6 +6,8 @@
 @mixin containerdetails($color: rgb(43, 144, 175)) {
 background-color: $color;
 font-size: medium;
+border: 5px black;
+margin: 5px
 }
 
 .container { 
@@ -15,9 +17,25 @@ font-size: medium;
 @mixin detailsection ($color: rgb(99, 11, 45))
 {
     flex-direction: row;
-    font-style: italic;
+    font-style: bold;
     border: 5px solid $color;
+    margin-top: 5px;
 }
+@mixin button($color) {
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: $color;
+}
+.like-button{
+    @include button(lightyellow);
+}
+.dislike-button{
+    @include button(red);
+}
+
 .setimage 
 {
     @include images(40px);
@@ -26,11 +44,9 @@ font-size: medium;
 .likedby
 {
     @include detailsection();
-
 }
 
 .dislikedby
 {
-    @include detailsection(green);
-
+    @include detailsection(lightgreen);
 }
