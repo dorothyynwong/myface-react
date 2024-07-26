@@ -1,23 +1,6 @@
-$bkg: #252A38;
-$darker-bkg: #141820;
-$default-fgd: #DCDCDC;
-$primary: #2985FF;
-$font-family: Segoe UI;
-$font-weight-regular: 400;
-$font-weight-bold: 600;
-$font-weight-lighter: 300;
-$font-size-tile: 24px;
-$font-size-subtitle: 20px;
-$font-size-button: 20px;
-$font-size-body: 14px;
-$font-size-secondary: 10px;
-$line-height-title: 24px;
-$line-height-subtitle: 24px;
-$line-height-button: 32px;
-$line-height-body: 20px;
-$line-height-secondary: 16px;
+@use 'variables' as *;
 
-body {
+@mixin main-styles {
     background : $bkg;
     color: $default-fgd;
     font-family: $font-family;
@@ -25,4 +8,8 @@ body {
     font-size:  $font-size-body;
     line-height: $line-height-body;
   
-  }
+}
+
+body {
+    @include main-styles;
+}
