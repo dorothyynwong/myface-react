@@ -25,27 +25,53 @@ const PostsList: React.FC<PostsListProps> = (props: PostsListProps) => {
     }
 
     return (
-        <div className='container'>
+
+    //     <div class="parent">
+    //     <% postList.results.forEach(function(post) {%>
+    //     <div class="child">                           
+    //         <img src="<%= post.imageUrl %>" alt="image in the post <%= post.id %>"/>
+    //         <div class="childText">
+    //         <div class="postedBy"><%= post.postedBy.username %></div>
+    //         <div class="createdAt"><%= format(post.createdAt, "yyyy-MM-dd") %> </div>
+    //         <p class="message"><%= post.message %></p>   
+    //         </div>
+    //         <div class="LikeDislike">
+    //             <div>
+    //                 <div id="like-count-<%= post.id %>"><%=post.likedBy.length %></div> Likes
+    //             </div>
+    //             <div>
+    //                 <div id="dislike-count-<%= post.id %>"><%=post.dislikedBy.length %></div> Dislikes
+    //             </div>
+    //         </div>
+    //         <div class="buttonBox">
+    //             <div>
+    //                 <button id="like-button-<%= post.id%>">Like</button>
+    //             </div>
+    //             <div>
+    //                 <button id="dislike-button-<%= post.id%>" type="submit">Dislike</button>
+    //             </div>
+    //         </div>
+    //     </div>
+    //     <% }); %>
+    // </div>
+        <div className='parent'>
             {props.posts.map(post => 
-                (<div key={post.id}>
-                    <div className="messageBox">
-                        <div className="imgBox">
-                            <img className='setimage' src={post.imageUrl} />
-                        </div> 
-                        <div className="textMessage">
-                            <div>
-                                User Name : 
-                            {post.postedBy.username}
-                            </div>
-                            <div>
-                                Message : 
-                            {post.message}
-                            </div>
-                        </div>
-      
+                (<div key={post.id} className="child">
+                    <img src={post.imageUrl} alt={`image of ${post.id}`}/>
+                    <div className="childText">
+                        <div className="postedBy">{post.postedBy.username}</div>
+                        <p className="message">{post.message}</p>   
                     </div>
-                    {/* {post.createdAt} */}
-                    {/* {post.likedBy.length} */}
+
+                    <div className="LikeDislike">
+                        <div>
+                            <div id={`like-count-${post.id}`}>{post.likedBy.length}</div> Likes
+                        </div>
+                        <div>
+                            <div id={`dislike-count-${post.id}`}>{post.dislikedBy.length}</div> Dislikes
+                        </div>
+                    </div>
+
                     <div className="buttonBox">
                         <div>
                             <button className = 'like-button' id={`like-button-${post.id}`} onClick={() => handleInteraction(post.id, "like")}>Like</button>
@@ -54,20 +80,16 @@ const PostsList: React.FC<PostsListProps> = (props: PostsListProps) => {
                         </div>
                     </div>
                     
-                    <div className='likedby'>Liked By: {post.likedBy.map(user => (
+                    {/* <div className='likedby'>Liked By: {post.likedBy.map(user => (
                         <div className = "likelist" key={user.id}>{user.username} </div>
-                    ))}</div>
+                    ))}</div> */}
 
-                    {/* {post.dislikedBy.length} */}
-                    <div className='dislikedby'>Disliked By: {post.dislikedBy.map(user => (
+                    {/* <div className='dislikedby'>Disliked By: {post.dislikedBy.map(user => (
                         <div className = "dislikelist" key={user.id}>{user.username} </div>
-                    ))}</div>
-
-
-                
+                    ))}</div> */}
+               
                 </div>)
             )}
-            {/* {props.posts[0].id} */}
         </div>
     );
 
