@@ -1,19 +1,318 @@
-@use "../posts/PostsList.scss";
+// @use "../posts/PostsList.scss";
 
 // @mixin images($width) {
 //     width: $width;
 // }
 
-$border-color: pink;
+// $border-color: pink;
 
-.coverImage {
-    @include PostsList.images(100px);
+// .coverImage {
+//     @include PostsList.images(100px);
+// }
+
+// .profileImage {
+//     @include PostsList.images(50px);
+//     border: solid 3px $border-color;
+//     &:hover {
+//       border-color: darken($border-color, 30%);
+//     }
+// }
+/* Add your styles here. */
+@keyframes MY_ANIMATION 
+{
+ 0% { background: green 
+}
+ 25% { background: red 
+}
+ 75% { background: purple 
+}
+ 100% { background: yellow 
+}
 }
 
-.profileImage {
-    @include PostsList.images(50px);
-    border: solid 3px $border-color;
-    &:hover {
-      border-color: darken($border-color, 30%);
-    }
+
+.menuPadHidden {
+  display : none;
+}
+
+.menuPadShow {
+  animation: MY_ANIMATION 4s;
+  position: absolute;
+  display : flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: #252A38;
+  opacity: 90%;
+  gap: 30px;
+}
+
+.menuLink{
+  font-weight: 400;
+  font-size: 24px;
+}
+
+
+body {
+  background : #252A38;
+  color: #DCDCDC;
+  font-family: Segoe UI;
+  font-weight: 400;
+  font-size:  14px;
+  line-height: 20px;
+
+}
+
+.postedBy {
+  font-weight: 600;
+}
+
+.createdAt {
+  font-weight: 300;
+  font-size:  10px;
+  line-height: 16px;
+}
+
+.buttonBox button {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+/* .message {
+  font-size:  14px;
+} */
+
+a:hover {
+  color: #2985FF;
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; 
+    padding : 24px;
+  }
+
+.child {
+    background: #151820;
+    /* margin: 3px; */
+    width: 100%;
+    margin: 12px;
+
+  }
+
+.childText{
+  padding : 16px;
+}
+
+.child img {
+    width: 100%;
+}
+
+.buttonBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center; 
+  }
+
+/* .ldButton {
+    /* width: 100%; 
+} */
+
+.LikeDislike{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start; 
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) { }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* .child {
+    width: 70%;
+  } */
+
+  .parent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start; 
+    flex-wrap: wrap;
+  }
+
+  .child {
+    width: 40%;
+  }
+
+  .menuPadShow{
+    width : 40%
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .parent {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start; 
+        flex-wrap: wrap;
+      }
+
+      .child {
+        width: 30%;
+      }
+
+      .menuPadShow{
+        width : 30%
+      }
+ }
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) { 
+    .parent {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start; 
+        flex-wrap: wrap;
+      }
+
+      .child {
+        width: 30%;
+      }
+
+      .menuPadShow{
+        width : 20%
+      }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) { 
+    .parent {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start; 
+        flex-wrap: wrap;
+      }
+
+      .child {
+        width: 30%;
+      }
+    
+      .menuPadShow{
+        width : 20%
+      }
+}
+
+
+
+
+
+body {
+  margin: 0;
+}
+
+
+.imageParent {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.coverImage {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+ .profileImage {
+  position: absolute;
+  top: 60%;
+  left: 10%;
+  height: 100px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+} 
+
+.profilePad {
+  position: absolute;
+  top: 60%;
+  left: 0;
+  height: 40%;
+   width: 100%;
+  background:#252A38;
+  opacity: 50%;
+}
+
+.name{
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.username{
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.email{
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  font-weight: 300;
+  font-size: 10px;
+}
+
+ /* .coverForeground {
+  z-index: 2;
+  position: absolute;
+  /* top: 20%; */
+  /* background: pink;
+ /* left: 10%;*/
+  /* height: 100px;
+  width : 400px
+}   */ 
+
+.profileSession {
+  height: 200px;
+}
+
+.userPosts {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: flex-start;
+  align-items: flex-start;  */
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  padding : 24px;
+}
+
+.userSinglePost {
+  background: #151820;
+  /* margin: 3px; */
+  width: 100%;
+  margin: 12px;
+
+}
+
+.userSinglePost img {
+  width: 300px;
 }
