@@ -9,8 +9,8 @@ interface PostsListProps {
 }
 
 const PostsList: React.FC<PostsListProps> = (props: PostsListProps) => {
-    const handleInteraction = (postId:number, interaction: string) => {
 
+    const handleInteraction = (postId:number, interaction: string) => {
         const actionUrl = `http://localhost:3001/posts/${postId}/${interaction}/`;
         try {
             fetch(actionUrl, {
@@ -28,16 +28,22 @@ const PostsList: React.FC<PostsListProps> = (props: PostsListProps) => {
         <div className='container'>
             {props.posts.map(post => 
                 (<div key={post.id}>
-                    {post.postedBy.username}
-                    <img className='setimage' src={post.imageUrl} />
-                    {post.message}
+                    <div className="messageBox">
+                    {/* <div className="imgBox"> */}
+                            <img className='setimage' src={post.imageUrl} />
+                        {/* </div>  */}
+                        {/* <div className="textMessage"> */}
+                            {post.postedBy.username}
+                            {post.message}
+                        {/* </div> */}
+      
+                    </div>
                     {/* {post.createdAt} */}
                     {/* {post.likedBy.length} */}
                     <div className="buttonBox">
                         <div>
                             <button className = 'like-button' id={`like-button-${post.id}`} onClick={() => handleInteraction(post.id, "like")}>Like</button>
-                        </div>
-                        <div>
+
                             <button className= 'dislike-button' id={`dislike-button-${post.id}`} onClick={() => handleInteraction(post.id, "dislike")}>Dislike</button>
                         </div>
                     </div>

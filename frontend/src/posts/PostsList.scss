@@ -6,19 +6,20 @@
 @mixin containerdetails($color: rgb(43, 144, 175)) {
 background-color: $color;
 font-size: medium;
-border: 5px black;
-margin: 5px
+border: 5px solid black;
+margin: 5px;
+flex-direction: row;
 }
 
 .container { 
-    @include containerdetails();
+    @include containerdetails(white);
 }
 
 @mixin detailsection ($color: rgb(99, 11, 45))
 {
     flex-direction: row;
     font-style: bold;
-    border: 5px solid $color;
+    border: 5px inset $color;
     margin-top: 5px;
 }
 @mixin button($color) {
@@ -29,6 +30,12 @@ margin: 5px
     padding: 10px 20px;
     background-color: $color;
 }
+.buttonBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .like-button{
     @include button(lightyellow);
 }

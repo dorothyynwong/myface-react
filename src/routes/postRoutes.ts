@@ -35,7 +35,6 @@ router.post('/:postId/like/', async (request, response) => {
     const returnUrl = request.params?.returnUrl;
 
     await likePost(userId, postId);
-
     return response.sendStatus(200);
 });
 

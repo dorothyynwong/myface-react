@@ -50,10 +50,6 @@ export const CreateUserDetailForm: React.FC = () => {
                 }
               }
             )
-              .then((data) => {
-                // Handle the response data
-                console.log('inside the data', data)
-              })
               .catch((error) => {
                 // Handle any errors
                 console.log('there is an error', error)
