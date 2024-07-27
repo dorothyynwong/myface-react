@@ -1,6 +1,7 @@
 import {FetchPosts} from './../data/fetchPosts.tsx';
 import React from "react";
 import "./PostsList.scss"
+import moment from 'moment';
 
 
 export const PostsList: React.FC = () => {
@@ -31,6 +32,7 @@ export const PostsList: React.FC = () => {
                     <img src={post.imageUrl} alt={`image of ${post.id}`}/>
                     <div className="childText">
                         <div className="postedBy">{post.postedBy.username}</div>
+                        <div className="createdAt">{moment(post.createdAt).format("YYYY-MM-DD")} </div>
                         <p className="message">{post.message}</p>   
                     </div>
 

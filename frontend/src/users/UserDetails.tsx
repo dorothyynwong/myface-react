@@ -3,6 +3,7 @@ import React from "react";
 import "./UserDetails.scss"
 import "./../../public/styles.scss"
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
 const UserDetails: React.FC = () => {
     const {userId} = useParams<{userId: string}> ();
@@ -53,7 +54,7 @@ const UserDetails: React.FC = () => {
                             <img src={post.imageUrl} alt={post.id.toString()}/>
                             <div className="childText">
                                 <div className="postedBy">{user?.username}</div>
-                                {/* <div className="createdAt">{post.createdAt.format("YYYY-MM-DD")}</div> */}
+                                <div className="createdAt">{moment(post.createdAt).format("YYYY-MM-DD")}</div> 
                                 <p className="message">{post.message}</p>
                             </div>
                         </div>
