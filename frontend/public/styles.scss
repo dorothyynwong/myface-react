@@ -7,7 +7,6 @@
     font-weight: $font-weight-regular;
     font-size:  $font-size-body;
     line-height: $line-height-body;
-  
 }
 
 body {
@@ -15,138 +14,132 @@ body {
 }
 
 .line {
-    width: 30px; // Width of each line
-    height: 3px; // Height of each line
-    background-color: #ffffff; // Color of the lines
+    width: 30px; 
+    height: 3px; 
+    background-color: $hamburger-line-bkg;
 }
 
-// Style for the hamburger button
 .hamburger {
-    position: absolute; // Absolute positioning to place it relative to the coverImage
-    top: 0px; // Adjust the top position as needed
-    right: 5px; // Adjust the right position as needed
-    background: transparent; // Remove background
-    border: none; // Remove default border
-    cursor: pointer; // Show a pointer cursor on hover
-    z-index: 200; // Ensure the button is above other elements
+    position: absolute; 
+    top: 0px;
+    right: 5px;
+    background: transparent; 
+    border: none; 
+    cursor: pointer; 
+    z-index: 200; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // width: 30px; // Width of the hamburger button
-    height: 40px; // Height of the hamburger button
+    height: 40px; 
     outline: none;
 }
 
 .hamburger:focus, .hamburger:active, .hamburger:hover {
-    outline: none; /* Custom focus style, e.g., a border or outline */
+    outline: none; 
 }
 
 .menuPadHidden {
     display : none;
   }
   
-  .menuPadShow {
-    z-index: 100;
-    position: absolute;
-    display : flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    background: #252A38;
-    opacity: 90%;
-    gap: 30px;
-  }
+.menuPadShow {
+  z-index: 100;
+  position: absolute;
+  display : flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: #252A38;
+  opacity: 90%;
+  gap: 30px;
+}
   
-  .menuLink{
-    font-weight: 400;
-    font-size: 24px;
-  }
+.menuLink{
+  font-weight: $font-weight-regular;
+  font-size: $font-size-title;
+}
   
    
-  /* Extra small devices (phones, 600px and down) */
-  @media only screen and (max-width: 600px) { }
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) { }
   
   /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (min-width: 600px) {
-    /* .child {
-      width: 70%;
-    } */
+@media only screen and (min-width: 600px) {
+  .parent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start; 
+    flex-wrap: wrap;
+  }
+
+  .child {
+    width: 40%;
+  }
+
+  .menuPadShow{
+    width : 40%
+  }
+}
   
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
     .parent {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start; 
-      flex-wrap: wrap;
-    }
-  
-    .child {
-      width: 40%;
-    }
-  
-    .menuPadShow{
-      width : 40%
-    }
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start; 
+        flex-wrap: wrap;
+      }
+
+      .child {
+        width: 30%;
+      }
+
+      .menuPadShow{
+        width : 30%
+      }
   }
   
-  /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 768px) {
-      .parent {
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: flex-start; 
-          flex-wrap: wrap;
-        }
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) { 
+    .parent {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start; 
+        flex-wrap: wrap;
+      }
+
+      .child {
+        width: 30%;
+      }
+
+      .menuPadShow{
+        width : 20%
+      }
+}
   
-        .child {
-          width: 30%;
-        }
-  
-        .menuPadShow{
-          width : 30%
-        }
-   }
-  
-  /* Large devices (laptops/desktops, 992px and up) */
-  @media only screen and (min-width: 992px) { 
-      .parent {
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: flex-start; 
-          flex-wrap: wrap;
-        }
-  
-        .child {
-          width: 30%;
-        }
-  
-        .menuPadShow{
-          width : 20%
-        }
-  }
-  
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-  @media only screen and (min-width: 1200px) { 
-      .parent {
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: flex-start; 
-          flex-wrap: wrap;
-        }
-  
-        .child {
-          width: 30%;
-        }
-      
-        .menuPadShow{
-          width : 20%
-        }
-  }
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) { 
+    .parent {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start; 
+        flex-wrap: wrap;
+      }
+
+      .child {
+        width: 30%;
+      }
+    
+      .menuPadShow{
+        width : 20%
+      }
+}
 
