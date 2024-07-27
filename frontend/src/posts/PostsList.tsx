@@ -28,10 +28,9 @@ export const PostsList: React.FC = () => {
 
             if(response.ok) {
                 const data =  await response.json();
-                console.log(data);
                 if(posts) {
-                    const updatedPosts = posts.map(post => 
-                        post.id === postId ? { ...post, likedBy: [...Array(data.newLikeCount)] } : post
+                    const updatedPosts = posts.map(post =>  
+                        post.id === postId ? { ...post, likedBy:data.newLikedBy, dislikedBy:data.newDislikedBy } : post   
                     );
                     setPosts(updatedPosts);
                 }

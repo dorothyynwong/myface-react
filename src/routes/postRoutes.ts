@@ -37,7 +37,7 @@ router.post('/:postId/like/', async (request, response) => {
 
     const postModel = await getSinglePost(postId);
     //return response.sendStatus(200);
-    return response.json({ success: true, newLikeCount: postModel.likedBy.length });
+    return response.json({ success: true, newLikedBy: postModel.likedBy, newDislikedBy: postModel.dislikedBy });
 });
 
 router.post('/:postId/dislike/', async (request, response) => {
@@ -48,7 +48,7 @@ router.post('/:postId/dislike/', async (request, response) => {
 
     const postModel = await getSinglePost(postId);
     //return response.sendStatus(200);
-    return response.json({ success: true, newDislikeCount: postModel.dislikedBy.length });
+    return response.json({ success: true, newLikedBy: postModel.likedBy, newDislikedBy: postModel.dislikedBy });
 });
 
 export default router;
