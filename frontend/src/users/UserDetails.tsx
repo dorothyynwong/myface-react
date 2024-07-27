@@ -1,4 +1,3 @@
-// import {PostModel} from './../data/fetchPosts.tsx';
 import {FetchUser} from './../data/fetchUserDetails.tsx';
 import React from "react";
 import "./UserDetails.scss"
