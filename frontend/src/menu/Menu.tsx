@@ -1,26 +1,16 @@
-import React from 'react';
-import { useState } from 'react';
-
-export const useMenu = () => {
-    const [isMenuVisible, setMenuVisible] = useState(false);
-
-    const toggleMenu = () => {
-        setMenuVisible(prev => !prev);
-    };
-
-    return [isMenuVisible, toggleMenu];
-};
-
+import {useState} from 'react';
 
 const Menu = () => {
+    const [isMenuVisible, setMenuVisible] = useState(false);
+
     return (
         <nav>
-            <button id="menuButton" className="hamburger" onClick={useMenu}>
+            <button id="menuButton" className="hamburger" onClick={() => setMenuVisible(prevState => !prevState)}>
                 <span className="line"></span>
                 <span className="line"></span>
                 <span className="line"></span>
             </button>
-            <div className="menuPadHidden" id="menuPad">
+            <div className={isMenuVisible? "menuPadShow" : "menuPadHidden"} id="menuPad">
                 <a className="menuLink" href="/users/1">Home</a>
                 <a className="menuLink" href="/posts">Posts</a>
                 <a className="menuLink" href="/users">Users</a>
