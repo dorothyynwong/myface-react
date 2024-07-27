@@ -6,6 +6,7 @@ import Myfetch from './data/fetchPosts.tsx'
 import FetchUser from './data/fetchUserDetails.tsx'
 import {CreateUserDetailForm} from './users/CreateUserDetailForm.tsx'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import UserDetails from './users/UserDetails.tsx'
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         <Route path="/posts"
           element={<Myfetch/>}/>
         <Route path="/users/:userId"
-          element={<FetchUser />}/>
+          element={<UserDetails/>}/>
         <Route path="/create_user" 
           element={<CreateUserDetailForm />}/>
         <Route path="*"
