@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import "./Menu.scss";
 
 const Menu = () => {
     const [isMenuVisible, setMenuVisible] = useState(false);

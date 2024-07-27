@@ -11,58 +11,7 @@
 
 body {
     @include main-styles;
-}
-
-.line {
-    width: 30px; 
-    height: 3px; 
-    background-color: $hamburger-line-bkg;
-}
-
-.hamburger {
-    position: absolute; 
-    top: 0px;
-    right: 5px;
-    background: transparent; 
-    border: none; 
-    cursor: pointer; 
-    z-index: 200; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 40px; 
-    outline: none;
-}
-
-.hamburger:focus, .hamburger:active, .hamburger:hover {
-    outline: none; 
-}
-
-.menuPadHidden {
-    display : none;
-  }
-  
-.menuPadShow {
-  z-index: 100;
-  position: absolute;
-  display : flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  background: #252A38;
-  opacity: 90%;
-  gap: 30px;
-}
-  
-.menuLink{
-  font-weight: $font-weight-regular;
-  font-size: $font-size-title;
-}
-  
+} 
    
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) { }
