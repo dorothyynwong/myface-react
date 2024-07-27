@@ -1,6 +1,6 @@
 import express from "express";
 import {CreatePostRequest} from "../models/api/createPostRequest";
-import {createPost, dislikePost, getPageOfPosts, likePost} from "../services/postService";
+import {createPost, dislikePost, getPageOfPosts, likePost, getSinglePost} from "../services/postService";
 import { body, validationResult } from "express-validator";
 
 const router = express.Router()
@@ -33,18 +33,22 @@ router.post('/:postId/like/', async (request, response) => {
     const userId = 1; // For now, just assume that we are user 1
     const postId = parseInt(request.params.postId);
     const returnUrl = request.params?.returnUrl;
-
     await likePost(userId, postId);
-    return response.sendStatus(200);
+
+    const postModel = await getSinglePost(postId);
+    //return response.sendStatus(200);
+    return response.json({ success: true, newLikeCount: postModel.likedBy.length });
 });
 
 router.post('/:postId/dislike/', async (request, response) => {
     const userId = 1; // For now, just assume that we are user 1
     const postId = parseInt(request.params.postId);
     const returnUrl = request.params?.returnUrl;
-
     await dislikePost(userId, postId);
-    return response.sendStatus(200);
+
+    const postModel = await getSinglePost(postId);
+    //return response.sendStatus(200);
+    return response.json({ success: true, newDislikeCount: postModel.dislikedBy.length });
 });
 
 export default router;

@@ -1,25 +1,42 @@
 import {FetchPosts} from './../data/fetchPosts.tsx';
-import React from "react";
+import React , {useEffect, useState} from "react";
 import "./PostsList.scss"
 import moment from 'moment';
 import  Menu from './../menu/Menu';
 
 export const PostsList: React.FC = () => {
-    const {posts, isLoading, error} = FetchPosts();
+    const {posts: initialPosts, isLoading, error} = FetchPosts();
+    const [posts, setPosts] = useState(initialPosts);
+
+    useEffect(() => {
+        setPosts(initialPosts);
+    }, [initialPosts]);
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
 
-    const handleInteraction = (postId:number, interaction: string) => {
+    const handleInteraction = async (postId:number, interaction: string) => {
         const actionUrl = `http://localhost:3001/posts/${postId}/${interaction}/`;
         try {
-            fetch(actionUrl, {
+            const response = await fetch(actionUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
+
+            if(response.ok) {
+                const data =  await response.json();
+                console.log(data);
+                if(posts) {
+                    const updatedPosts = posts.map(post => 
+                        post.id === postId ? { ...post, likedBy: [...Array(data.newLikeCount)] } : post
+                    );
+                    setPosts(updatedPosts);
+                }
+
+            }
         } catch (error) {
             console.error('Error:', error);
         }
