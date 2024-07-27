@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
-import PostsList from "./../posts/PostsList";
-// import {PostModel} from '../../../src/models/api/postModel.ts';
-
-// Define the type for your data
 
 interface PostUserModel {
     id: number;
@@ -21,12 +17,10 @@ export interface PostModel {
     dislikedBy: PostUserModel[];
 }
 
-
-const Myfetch: React.FC = () => {
-  const [data, setData] = useState<PostModel[] | null>(null);
+export const FetchPosts = () => {
+  const [posts, setPosts] = useState<PostModel[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-
   useEffect(() => {
     setIsLoading(true);
     fetch("http://localhost:3001/posts")
@@ -38,49 +32,17 @@ const Myfetch: React.FC = () => {
       })
       .then(json => {
         const results = json.results;
-        setData(results);
+        setPosts(results);
         setIsLoading(false);
         
       }) 
-      // .then((data: PostModel[]) => {
-      //   setData(data);
-      //   setIsLoading(false);
-      // })
       .catch((error: Error) => {
         setError(error);
         setIsLoading(false);
       });
   }, []); // Empty dependency array means this effect will only run once, similar to componentDidMount
+  
+  return {posts, isLoading, error};
+}
 
-  if (isLoading) {
-    return (
-      <div>
-        Loading ....
-      </div>
-      
-    )
-
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  if (!data) {
-    // No data yet
-    return null;
-  }
-
-  console.log(data);
-
-  // Render your component with data
-  return (
-    <div>
-      {/* Render your data here */}
-      check console.log for how the data is retreived  ...
-      <PostsList posts={data}/>
-    </div>
-  );
-};
-
-export default Myfetch;
+export default FetchPosts;
