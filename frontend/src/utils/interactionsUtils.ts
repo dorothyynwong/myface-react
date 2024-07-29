@@ -4,7 +4,7 @@ export const handleInteraction = async (
         postId:number, 
         interaction: string,
         posts: PostModel[],
-        setPosts: React.Dispatch<React.SetStateAction<PostModel[]>>
+        setPosts: React.Dispatch<React.SetStateAction<PostModel[] | null>> 
     ) => {
     const actionUrl = `http://localhost:3001/posts/${postId}/${interaction}/`;
     try {

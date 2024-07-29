@@ -3,7 +3,7 @@ import React , {useEffect, useState} from "react";
 import "./PostsList.scss"
 import moment from 'moment';
 import  Menu from './../menu/Menu';
-import "./../utils/interactionsUtils.ts"
+import {handleInteraction} from "./../utils/interactionsUtils.ts"
 
 export const PostsList: React.FC = () => {
     const {posts: initialPosts, isLoading, error} = FetchPosts();
