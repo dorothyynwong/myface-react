@@ -3,6 +3,7 @@ import React , {useEffect, useState} from "react";
 import "./PostsList.scss"
 import moment from 'moment';
 import  Menu from './../menu/Menu';
+import "./../utils/interactionsUtils.ts"
 
 export const PostsList: React.FC = () => {
     const {posts: initialPosts, isLoading, error} = FetchPosts();
@@ -14,32 +15,6 @@ export const PostsList: React.FC = () => {
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
-
-
-    const handleInteraction = async (postId:number, interaction: string) => {
-        const actionUrl = `http://localhost:3001/posts/${postId}/${interaction}/`;
-        try {
-            const response = await fetch(actionUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            if(response.ok) {
-                const data =  await response.json();
-                if(posts) {
-                    const updatedPosts = posts.map(post =>  
-                        post.id === postId ? { ...post, likedBy:data.newLikedBy, dislikedBy:data.newDislikedBy } : post   
-                    );
-                    setPosts(updatedPosts);
-                }
-
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
 
     return (
         <div className='parent'>
@@ -64,9 +39,9 @@ export const PostsList: React.FC = () => {
 
                     <div className="buttonBox">
                         <div>
-                            <button className = 'like-button' id={`like-button-${post.id}`} onClick={() => handleInteraction(post.id, "like")}>Like</button>
+                            <button className = 'like-button' id={`like-button-${post.id}`} onClick={() => handleInteraction(post.id, "like", posts, setPosts)}>Like</button>
 
-                            <button className= 'dislike-button' id={`dislike-button-${post.id}`} onClick={() => handleInteraction(post.id, "dislike")}>Dislike</button>
+                            <button className= 'dislike-button' id={`dislike-button-${post.id}`} onClick={() => handleInteraction(post.id, "dislike", posts, setPosts)}>Dislike</button>
                         </div>
                     </div>
                 </div>)
