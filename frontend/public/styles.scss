@@ -1,28 +1,94 @@
-$bkg: #252A38;
-$darker-bkg: #141820;
-$default-fgd: #DCDCDC;
-$primary: #2985FF;
-$font-family: Segoe UI;
-$font-weight-regular: 400;
-$font-weight-bold: 600;
-$font-weight-lighter: 300;
-$font-size-tile: 24px;
-$font-size-subtitle: 20px;
-$font-size-button: 20px;
-$font-size-body: 14px;
-$font-size-secondary: 10px;
-$line-height-title: 24px;
-$line-height-subtitle: 24px;
-$line-height-button: 32px;
-$line-height-body: 20px;
-$line-height-secondary: 16px;
+@use 'variables' as *;
 
-body {
+@mixin main-styles {
     background : $bkg;
     color: $default-fgd;
     font-family: $font-family;
     font-weight: $font-weight-regular;
     font-size:  $font-size-body;
     line-height: $line-height-body;
+}
+
+body {
+    @include main-styles;
+} 
+   
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) { }
   
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .parent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start; 
+    flex-wrap: wrap;
   }
+
+  .child {
+    width: 40%;
+  }
+
+  .menuPadShow{
+    width : 40%
+  }
+}
+  
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .parent {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start; 
+        flex-wrap: wrap;
+      }
+
+      .child {
+        width: 30%;
+      }
+
+      .menuPadShow{
+        width : 30%
+      }
+  }
+  
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) { 
+    .parent {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start; 
+        flex-wrap: wrap;
+      }
+
+      .child {
+        width: 30%;
+      }
+
+      .menuPadShow{
+        width : 20%
+      }
+}
+  
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) { 
+    .parent {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start; 
+        flex-wrap: wrap;
+      }
+
+      .child {
+        width: 30%;
+      }
+    
+      .menuPadShow{
+        width : 20%
+      }
+}
+

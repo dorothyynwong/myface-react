@@ -1,51 +1,67 @@
-import {PostModel} from './../data/fetchPosts.tsx';
-import React from "react";
+import {FetchPosts} from './../data/fetchPosts.tsx';
+import React , {useEffect, useState} from "react";
 import "./PostsList.scss"
+import moment from 'moment';
+import  Menu from './../menu/Menu';
+
+export const PostsList: React.FC = () => {
+    const {posts: initialPosts, isLoading, error} = FetchPosts();
+    const [posts, setPosts] = useState(initialPosts);
+
+    useEffect(() => {
+        setPosts(initialPosts);
+    }, [initialPosts]);
+
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
 
-
-interface PostsListProps {
-    posts: PostModel[];
-}
-
-const PostsList: React.FC<PostsListProps> = (props: PostsListProps) => {
-
-    const handleInteraction = (postId:number, interaction: string) => {
+    const handleInteraction = async (postId:number, interaction: string) => {
         const actionUrl = `http://localhost:3001/posts/${postId}/${interaction}/`;
         try {
-            fetch(actionUrl, {
+            const response = await fetch(actionUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
+
+            if(response.ok) {
+                const data =  await response.json();
+                if(posts) {
+                    const updatedPosts = posts.map(post =>  
+                        post.id === postId ? { ...post, likedBy:data.newLikedBy, dislikedBy:data.newDislikedBy } : post   
+                    );
+                    setPosts(updatedPosts);
+                }
+
+            }
         } catch (error) {
             console.error('Error:', error);
         }
     }
 
     return (
-        <div className='container'>
-            {props.posts.map(post => 
-                (<div key={post.id}>
-                    <div className="messageBox">
-                        <div className="imgBox">
-                            <img className='setimage' src={post.imageUrl} />
-                        </div> 
-                        <div className="textMessage">
-                            <div>
-                                User Name : 
-                            {post.postedBy.username}
-                            </div>
-                            <div>
-                                Message : 
-                            {post.message}
-                            </div>
-                        </div>
-      
+        <div className='parent'>
+            <div><Menu /></div>
+            {posts?.map(post => 
+                (<div key={post.id} className="child">
+                    <img src={post.imageUrl} alt={`image of ${post.id}`}/>
+                    <div className="childText">
+                        <div className="postedBy">{post.postedBy.username}</div>
+                        <div className="createdAt">{moment(post.createdAt).format("YYYY-MM-DD")} </div>
+                        <p className="message">{post.message}</p>   
                     </div>
-                    {/* {post.createdAt} */}
-                    {/* {post.likedBy.length} */}
+
+                    <div className="LikeDislike">
+                        <div>
+                            <div id={`like-count-${post.id}`}>{post.likedBy.length}</div> Likes
+                        </div>
+                        <div>
+                            <div id={`dislike-count-${post.id}`}>{post.dislikedBy.length}</div> Dislikes
+                        </div>
+                    </div>
+
                     <div className="buttonBox">
                         <div>
                             <button className = 'like-button' id={`like-button-${post.id}`} onClick={() => handleInteraction(post.id, "like")}>Like</button>
@@ -53,21 +69,8 @@ const PostsList: React.FC<PostsListProps> = (props: PostsListProps) => {
                             <button className= 'dislike-button' id={`dislike-button-${post.id}`} onClick={() => handleInteraction(post.id, "dislike")}>Dislike</button>
                         </div>
                     </div>
-                    
-                    <div className='likedby'>Liked By: {post.likedBy.map(user => (
-                        <div className = "likelist" key={user.id}>{user.username} </div>
-                    ))}</div>
-
-                    {/* {post.dislikedBy.length} */}
-                    <div className='dislikedby'>Disliked By: {post.dislikedBy.map(user => (
-                        <div className = "dislikelist" key={user.id}>{user.username} </div>
-                    ))}</div>
-
-
-                
                 </div>)
             )}
-            {/* {props.posts[0].id} */}
         </div>
     );
 

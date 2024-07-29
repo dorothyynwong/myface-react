@@ -49,3 +49,9 @@ async function toPostModel(post: Post): Promise<PostModel> {
         dislikedBy: await getByPostInteraction(post.id, 'DISLIKE', 1, 10),
     }
 }
+
+export async function getSinglePost(postId: number): Promise<PostModel> {
+    const post = await postRepo.getPost(postId);
+    const postModel = await toPostModel(post);
+    return postModel;
+  }
