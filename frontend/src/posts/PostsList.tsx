@@ -3,7 +3,7 @@ import React , {useEffect, useState} from "react";
 import "./PostsList.scss"
 import moment from 'moment';
 import  Menu from './../menu/Menu';
-import {handleInteraction} from "./../utils/interactionsUtils.ts"
+import { InteractionsButtons } from './InteractionsButton.tsx';
 
 export const PostsList: React.FC = () => {
     const {posts: initialPosts, isLoading, error} = FetchPosts();
@@ -39,9 +39,18 @@ export const PostsList: React.FC = () => {
 
                     <div className="buttonBox">
                         <div>
-                            <button className = 'like-button' id={`like-button-${post.id}`} onClick={() => handleInteraction(post.id, "like", posts, setPosts)}>Like</button>
-
-                            <button className= 'dislike-button' id={`dislike-button-${post.id}`} onClick={() => handleInteraction(post.id, "dislike", posts, setPosts)}>Dislike</button>
+                            <InteractionsButtons
+                                postId={post.id}
+                                interaction="Like"
+                                posts={posts}
+                                setPosts={setPosts}
+                            />
+                            <InteractionsButtons
+                                postId={post.id}
+                                interaction="Dislike"
+                                posts={posts}
+                                setPosts={setPosts}
+                            />
                         </div>
                     </div>
                 </div>)
