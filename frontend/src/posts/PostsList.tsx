@@ -2,7 +2,6 @@ import {FetchPosts} from './../data/fetchPosts.tsx';
 import React , {useEffect, useState} from "react";
 import "./PostsList.scss"
 import moment from 'moment';
-import  Menu from './../menu/Menu';
 import { InteractionsButtons } from './InteractionsButton.tsx';
 
 export const PostsList: React.FC = () => {
@@ -18,7 +17,7 @@ export const PostsList: React.FC = () => {
 
     return (
         <div className='parent'>
-            <div><Menu /></div>
+           
             {posts?.map(post => 
                 (<div key={post.id} className="child">
                     <img src={post.imageUrl} alt={`image of ${post.id}`}/>

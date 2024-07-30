@@ -3,13 +3,20 @@ import {CreateUserDetailForm} from './users/CreateUserDetailForm.tsx'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import UserDetails from './users/UserDetails.tsx'
 import PostsList from './posts/PostsList.tsx'
-import Menu from './menu/Menu.tsx'
-
+import HamburgerBtn from './menu/HamburgerBtn.tsx';
+import Menu from './menu/Menu.tsx';
+import {useState} from 'react';
 
 function App() {
+  const [isMenuVisible, setIsMenuVisible] = useState(false);  
+  const toggleMenu = () => {
+    setIsMenuVisible(prevState => !prevState);
+  };
+  
   return (
     <>
-    <div><Menu /></div>
+    <HamburgerBtn onClick={toggleMenu} />
+    <div><Menu isVisible = {isMenuVisible}/></div>
     <Router>
       <Routes>
         <Route path="/posts"
