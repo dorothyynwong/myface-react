@@ -13,29 +13,9 @@ const UserDetails: React.FC = () => {
     if (error) return <p>Error: {error.message}</p>;
 
     const splitName = user?.name.split(' ')[0];
-    const displayMenu = () => {
-        let menuPad = document.getElementById("menuPad");
-        if (menuPad) {
-            const displayValue = menuPad.className;
-            if (displayValue === "menuPadHidden")  menuPad.setAttribute("class","menuPadShow");
-            else  menuPad.setAttribute("class","menuPadHidden");
-        }
-    }
 
     return (
         <div className='userDetails'>
-                <nav>
-                <button id="menuButton" className="hamburger" onClick={() => displayMenu()}>
-                        <span className="line"></span>
-                        <span className="line"></span>
-                        <span className="line"></span>
-                </button>
-                <div className="menuPadHidden" id="menuPad">
-                    <a className="menuLink" href="/users/1">Home</a>
-                    <a className="menuLink" href="/posts">Posts</a>
-                    <a className="menuLink" href="/users">Users</a>
-                </div>
-                </nav>
             <div className="profileSession">
                 <div className="imageParent">
                     <img className="coverImage" src={user?.coverImageUrl} alt="cover image"/>

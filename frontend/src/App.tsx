@@ -3,11 +3,13 @@ import {CreateUserDetailForm} from './users/CreateUserDetailForm.tsx'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import UserDetails from './users/UserDetails.tsx'
 import PostsList from './posts/PostsList.tsx'
+import Menu from './menu/Menu.tsx'
 
 
 function App() {
   return (
     <>
+    <div><Menu /></div>
     <Router>
       <Routes>
         <Route path="/posts"
