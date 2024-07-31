@@ -1,4 +1,4 @@
-import {FetchUser} from './../data/fetchUserDetails.tsx';
+// import {FetchUser} from './../data/fetchUserDetails.tsx';
 import React, {useState, useEffect} from "react";
 import "./UserDetails.scss"
 import "./../../public/styles.scss"

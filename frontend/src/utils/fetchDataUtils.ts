@@ -1,3 +1,19 @@
+interface PostUserModel {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+}
+export interface PostModel {
+    id: number;
+    message: string;
+    imageUrl: string;
+    createdAt: moment.Moment;
+    postedBy: PostUserModel;
+    likedBy: PostUserModel[];
+    dislikedBy: PostUserModel[];
+}
+
 interface UserPostModel {
     id: number;
     message: string;
@@ -18,9 +34,10 @@ export interface UserModel {
 }
 
 export enum DataType {
+    Posts,
     UserModel
   }
-export default async function fetchData(url:string, type:  DataType): Promise<UserModel> {
+export default async function fetchData(url:string, type:  DataType): Promise<PostModel[] | UserModel> {
     try {
         const response = await fetch(url);
         
@@ -32,6 +49,8 @@ export default async function fetchData(url:string, type:  DataType): Promise<Us
     
     if (type === DataType.UserModel) {
       return data as UserModel
+    } else if (type === DataType.Posts) {
+        return data as PostModel[];
     } else {
       throw new Error("Unknown data type");
     }
