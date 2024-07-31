@@ -50,7 +50,7 @@ export default async function fetchData(url:string, type:  DataType): Promise<Po
     if (type === DataType.UserModel) {
       return data as UserModel
     } else if (type === DataType.Posts) {
-        return data as PostModel[];
+        return data.results as PostModel[];
     } else {
       throw new Error("Unknown data type");
     }

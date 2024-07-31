@@ -9,7 +9,7 @@ import fetchData, { DataType, UserModel } from './../utils/fetchDataUtils.ts';
 const UserDetails: React.FC = () => {
     const {userId} = useParams<{userId: string}> ();
     // const { user, isLoading, error } = FetchUser(Number(userId));
-    const userUrl = `http://localhost:3001/users/${userId.toString()}`;
+    const userUrl = `http://localhost:3001/users/${userId?.toString()}`;
     const [user, setUser] = useState<UserModel | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
