@@ -1,13 +1,37 @@
 import {FetchUser} from './../data/fetchUserDetails.tsx';
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./UserDetails.scss"
 import "./../../public/styles.scss"
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import fetchData, { DataType, UserModel } from './../utils/fetchDataUtils.ts';
 
 const UserDetails: React.FC = () => {
     const {userId} = useParams<{userId: string}> ();
-    const { user, isLoading, error } = FetchUser(Number(userId));
+    // const { user, isLoading, error } = FetchUser(Number(userId));
+    const userUrl = `http://localhost:3001/users/${userId.toString()}`;
+    const [user, setUser] = useState<UserModel | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<Error | null>(null);
+
+    useEffect(() => {
+        const fetchUserDetails = async () => {
+            try {
+              const userData = await fetchData(userUrl, DataType.UserModel) as UserModel;
+              setUser(userData);
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                    setError(error);
+                    setIsLoading(false);
+                }
+            }
+          };
+        
+        fetchUserDetails();
+        setIsLoading(false);
+    },[]);
+
+    // fetchData(userUrl, DataType.UserModel);
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
