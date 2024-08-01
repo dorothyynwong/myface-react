@@ -1,43 +1,6 @@
-interface PostUserModel {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-}
-export interface PostModel {
-  id: number;
-  message: string;
-  imageUrl: string;
-  createdAt: moment.Moment;
-  postedBy: PostUserModel;
-  likedBy: PostUserModel[];
-  dislikedBy: PostUserModel[];
-}
+import { DataType } from "../models/common";
 
-interface UserPostModel {
-  id: number;
-  message: string;
-  imageUrl: string;
-  createdAt: moment.Moment;
-}
-
-export interface UserModel {
-  id: number;
-  name: string;
-  username: string;
-  profileImageUrl: string;
-  coverImageUrl: string;
-  email: string;
-  posts: UserPostModel[];
-  likes: UserPostModel[];
-  dislikes: UserPostModel[];
-}
-
-export enum DataType {
-  Posts,
-  UserModel
-}
-export default async function fetchData(url: string, type: DataType): Promise<PostModel[] | UserModel> {
+export default async function fetchData<T>(url: string, type: DataType): Promise<T> {
   try {
     const response = await fetch(url);
 
@@ -48,9 +11,9 @@ export default async function fetchData(url: string, type: DataType): Promise<Po
     const data = await response.json();
 
     if (type === DataType.UserModel) {
-      return data as UserModel
+      return data as T;
     } else if (type === DataType.Posts) {
-      return data.results as PostModel[];
+      return data.results as T;
     } else {
       throw new Error("Unknown data type");
     }

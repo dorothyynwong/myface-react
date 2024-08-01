@@ -3,29 +3,25 @@ import React, { useEffect, useState } from "react";
 import "./PostsList.scss"
 import moment from 'moment';
 import { InteractionsButtons } from './InteractionsButton.tsx';
-import fetchData, { DataType, PostModel } from './../utils/fetchDataUtils.ts';
+import { DataType } from "../models/common.ts";
+import { PostModel } from "../models/post.ts";
+import fetchData from "../utils/fetchDataUtils.ts";
 
 export const PostsList: React.FC = () => {
-    // const {posts: initialPosts, isLoading, error} = FetchPosts();
-    // const [posts, setPosts] = useState(initialPosts);
     const postsUrl = "http://localhost:3001/posts";
     const [posts, setPosts] = useState<PostModel[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
-    // useEffect(() => {
-    //     setPosts(initialPosts);
-    // }, [initialPosts]);
-
     useEffect(() => {
         const fetchPosts = async () => {
             try {
+                setIsLoading(true);
                 const postData = await fetchData(postsUrl, DataType.Posts) as PostModel[];
                 setPosts(postData);
             } catch (error: unknown) {
                 if (error instanceof Error) {
                     setError(error);
-                    setIsLoading(false);
                 }
             }
         };

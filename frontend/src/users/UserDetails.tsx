@@ -1,10 +1,11 @@
-// import {FetchUser} from './../data/fetchUserDetails.tsx';
 import React, { useState, useEffect } from "react";
 import "./UserDetails.scss"
 import "./../../public/styles.scss"
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
-import fetchData, { DataType, UserModel } from './../utils/fetchDataUtils.ts';
+import { DataType } from "../models/common.ts";
+import { UserModel } from "../models/user.ts";
+import fetchData from "../utils/fetchDataUtils.ts";
 
 const UserDetails: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
@@ -17,8 +18,10 @@ const UserDetails: React.FC = () => {
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
+                setIsLoading(true);
                 const userData = await fetchData(userUrl, DataType.UserModel) as UserModel;
                 setUser(userData);
+                setIsLoading(false);
             } catch (error: unknown) {
                 if (error instanceof Error) {
                     setError(error);
@@ -28,7 +31,6 @@ const UserDetails: React.FC = () => {
         };
 
         fetchUserDetails();
-        setIsLoading(false);
     }, []);
 
     // fetchData(userUrl, DataType.UserModel);
