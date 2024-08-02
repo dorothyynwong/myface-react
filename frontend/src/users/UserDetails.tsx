@@ -11,6 +11,16 @@ const UserDetails: React.FC = () => {
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
+ 
+    const userProfileProps: UserProfileProps = {
+        name: user? user.name : "",
+        username: user? user.username : "",
+        profileImageUrl: user? user.profileImageUrl : "",
+        coverImageUrl: user? user.coverImageUrl : "",
+        email: user? user.email : ""
+    }
+
+        
 
     const splitName = user?.name.split(' ')[0];
 
