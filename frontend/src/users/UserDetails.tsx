@@ -6,6 +6,15 @@ import moment from 'moment';
 import { DataType } from "../models/common.ts";
 import { UserModel } from "../models/user.ts";
 import fetchData from "../utils/fetchDataUtils.ts";
+import UserProfile from "./UserProfile.tsx";
+
+export interface UserProfileProps {
+        name: string;
+        username: string;
+        profileImageUrl: string;
+        coverImageUrl: string;
+        email: string
+}
 
 const UserDetails: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
@@ -33,8 +42,6 @@ const UserDetails: React.FC = () => {
         fetchUserDetails();
     }, []);
 
-    // fetchData(userUrl, DataType.UserModel);
-
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
  
@@ -45,24 +52,12 @@ const UserDetails: React.FC = () => {
         coverImageUrl: user? user.coverImageUrl : "",
         email: user? user.email : ""
     }
-
         
-
     const splitName = user?.name.split(' ')[0];
-
 
     return (
         <div className='userDetails'>
-            <div className="profileSession">
-                <div className="imageParent">
-                    <img className="coverImage" src={user?.coverImageUrl} alt="cover image" />
-                    <div className="profilePad"></div>
-                    <img className="profileImage" src={user?.profileImageUrl} alt="profile image" />
-                    <div className="name">{user?.name}</div>
-                    <div className="username">{user?.username}</div>
-                    <div className="email">{user?.email}</div>
-                </div>
-            </div>
+            <UserProfile {...userProfileProps} />
             <div className="postsSession">
                 <h1>{splitName}'s Posts</h1>
                 <div className="userPosts">
