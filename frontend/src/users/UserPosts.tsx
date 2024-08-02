@@ -1,22 +1,25 @@
 import React from "react";
 import "./UserDetails.scss"
 import "./../../public/styles.scss"
-import { UserProfileModel } from "../models/user";
+import {  UserPostsProps } from "../models/user";
+import moment from "moment";
 
-const UserProfile: React.FC<UserProfileModel> = (props: UserProfileModel) => {
+const UserPosts: React.FC<UserPostsProps> = (props: UserPostsProps) => {
     return (
-        <div className="profileSession">
-            <div className="imageParent">
-                <img className="coverImage" src={props.coverImageUrl} alt="cover image" />
-                <div className="profilePad"></div>
-                <img className="profileImage" src={props.profileImageUrl} alt="profile image" />
-                <div className="name">{props.name}</div>
-                <div className="username">{props.username}</div>
-                <div className="email">{props.email}</div>
+        <div className="userPosts">
+        {props.posts.map(post => (
+            <div className="userSinglePost" key={post.id}>
+                <img src={post.imageUrl} alt={post.id.toString()} />
+                <div className="childText">
+                    <div className="postedBy">{props.username}</div>
+                    <div className="createdAt">{moment(post.createdAt).format("YYYY-MM-DD")}</div>
+                    <p className="message">{post.message}</p>
+                </div>
             </div>
-        </div>
+        ))}
+    </div>
     );
 
 };
 
-export default UserProfile;
+export default UserPosts;

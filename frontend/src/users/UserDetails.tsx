@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./UserDetails.scss"
 import "./../../public/styles.scss"
 import { useParams } from 'react-router-dom';
-import moment from 'moment';
 import { DataType } from "../models/common.ts";
-import { UserModel, UserProfileModel } from "../models/user.ts";
+import { UserModel, UserPostsProps, UserProfileProps } from "../models/user.ts";
 import fetchData from "../utils/fetchDataUtils.ts";
 import UserProfile from "./UserProfile.tsx";
+import UserPosts from "./UserPosts.tsx";
 
 const UserDetails: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
@@ -36,34 +36,52 @@ const UserDetails: React.FC = () => {
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
- 
-    const userProfileProps: UserProfileModel = {
-        name: user? user.name : "",
-        username: user? user.username : "",
-        profileImageUrl: user? user.profileImageUrl : "",
-        coverImageUrl: user? user.coverImageUrl : "",
-        email: user? user.email : ""
+
+    let userProfileProps: UserProfileProps = {
+        name: '',
+        username: '',
+        profileImageUrl: '',
+        coverImageUrl: '',
+        email: ''
+    };
+
+    if (user) {
+        userProfileProps = {
+            name: user.name,
+            username: user.username,
+            profileImageUrl: user.profileImageUrl,
+            coverImageUrl: user.coverImageUrl,
+            email: user.email
+        };
     }
         
-    const splitName = user?.name.split(' ')[0];
+    const splitName = user ? user.name.split(' ')[0] : '';
 
     return (
         <div className='userDetails'>
-            <UserProfile {...userProfileProps} />
+            {user && <UserProfile {...userProfileProps} />}
             <div className="postsSession">
                 <h1>{splitName}'s Posts</h1>
-                <div className="userPosts">
-                    {user?.posts.map(post => (
-                        <div className="userSinglePost" key={post.id}>
-                            <img src={post.imageUrl} alt={post.id.toString()} />
-                            <div className="childText">
-                                <div className="postedBy">{user?.username}</div>
-                                <div className="createdAt">{moment(post.createdAt).format("YYYY-MM-DD")}</div>
-                                <p className="message">{post.message}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                {user && (
+                    <UserPosts
+                        username={user.username}
+                        posts={user.posts}
+                    />
+                )}
+                <h1>Liked</h1>
+                {user && (
+                    <UserPosts
+                        username={user.username}
+                        posts={user.likes}
+                    />
+                )}
+                <h1>Disliked</h1>
+                {user && (
+                    <UserPosts
+                        username={user.username}
+                        posts={user.dislikes}
+                    />
+                )}
             </div>
         </div>
     );

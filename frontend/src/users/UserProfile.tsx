@@ -1,9 +1,9 @@
 import React from "react";
 import "./UserDetails.scss"
 import "./../../public/styles.scss"
-import { UserProfileModel } from "../models/user";
+import { UserProfileProps } from "../models/user";
 
-const UserProfile: React.FC<UserProfileModel> = (props: UserProfileModel) => {
+const UserProfile: React.FC<UserProfileProps> = (props: UserProfileProps) => {
     return (
         <div className="profileSession">
             <div className="imageParent">

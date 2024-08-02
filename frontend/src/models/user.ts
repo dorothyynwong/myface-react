@@ -17,10 +17,15 @@ export interface UserPostModel {
     dislikes: UserPostModel[];
   }
 
-  export interface UserProfileModel {
+  export interface UserProfileProps{
     name: string;
     username: string;
     profileImageUrl: string;
     coverImageUrl: string;
     email: string
+}
+
+export interface UserPostsProps {
+    username: string;
+    posts: UserPostModel[];
 }
