@@ -1,4 +1,4 @@
-interface UserPostModel {
+export interface UserPostModel {
     id: number;
     message: string;
     imageUrl: string;
@@ -16,3 +16,11 @@ interface UserPostModel {
     likes: UserPostModel[];
     dislikes: UserPostModel[];
   }
+
+  export interface UserProfileModel {
+    name: string;
+    username: string;
+    profileImageUrl: string;
+    coverImageUrl: string;
+    email: string
+}

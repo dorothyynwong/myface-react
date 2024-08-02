@@ -4,17 +4,9 @@ import "./../../public/styles.scss"
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { DataType } from "../models/common.ts";
-import { UserModel } from "../models/user.ts";
+import { UserModel, UserProfileModel } from "../models/user.ts";
 import fetchData from "../utils/fetchDataUtils.ts";
 import UserProfile from "./UserProfile.tsx";
-
-export interface UserProfileProps {
-        name: string;
-        username: string;
-        profileImageUrl: string;
-        coverImageUrl: string;
-        email: string
-}
 
 const UserDetails: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
@@ -45,7 +37,7 @@ const UserDetails: React.FC = () => {
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
  
-    const userProfileProps: UserProfileProps = {
+    const userProfileProps: UserProfileModel = {
         name: user? user.name : "",
         username: user? user.username : "",
         profileImageUrl: user? user.profileImageUrl : "",
