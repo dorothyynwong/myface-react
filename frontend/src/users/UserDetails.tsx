@@ -3,7 +3,7 @@ import "./UserDetails.scss"
 import "./../../public/styles.scss"
 import { useParams } from 'react-router-dom';
 import { DataType } from "../models/common.ts";
-import { UserModel, UserPostsProps, UserProfileProps } from "../models/user.ts";
+import { UserModel, UserProfileProps } from "../models/user.ts";
 import fetchData from "../utils/fetchDataUtils.ts";
 import UserProfile from "./UserProfile.tsx";
 import UserPosts from "./UserPosts.tsx";
