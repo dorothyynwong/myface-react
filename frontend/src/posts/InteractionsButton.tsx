@@ -1,4 +1,4 @@
-import { PostModel } from './../data/fetchPosts.tsx';
+import { PostModel } from "../models/post";
 
 export interface InteractionsProps {
     postId: number,
