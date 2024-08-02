@@ -1,13 +1,13 @@
 import { PostModel } from "../models/post";
 
-export interface InteractionsProps {
+export interface InteractionsButtonProps {
     postId: number,
     interaction: string,
     posts: PostModel[],
     setPosts: React.Dispatch<React.SetStateAction<PostModel[] | null>>
 }
 
-export const InteractionsButtons: React.FC<InteractionsProps> = (props: InteractionsProps) => {
+export const InteractionsButtons: React.FC<InteractionsButtonProps> = (props: InteractionsButtonProps) => {
 
     const { postId, interaction, posts, setPosts } = props;
     const interactionLower = interaction.toLowerCase();

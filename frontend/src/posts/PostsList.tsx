@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from "react";
 import "./PostsList.scss"
 import moment from 'moment';
-import { InteractionsButtons } from './InteractionsButton.tsx';
+import { InteractionsButtons } from '../interactions/InteractionsButton.tsx';
 import { DataType } from "../models/common.ts";
 import { PostModel } from "../models/post.ts";
 import fetchData from "../utils/fetchDataUtils.ts";
+import { InteractionsCounter } from "../interactions/InteractionsCounter.tsx";
 
 export const PostsList: React.FC = () => {
     const postsUrl = "http://localhost:3001/posts";
@@ -45,30 +46,32 @@ export const PostsList: React.FC = () => {
                     <p className="message">{post.message}</p>
                 </div>
 
-                <div className="LikeDislike">
-                    <div>
-                        <div id={`like-count-${post.id}`}>{post.likedBy.length}</div> Likes
-                    </div>
-                    <div>
-                        <div id={`dislike-count-${post.id}`}>{post.dislikedBy.length}</div> Dislikes
-                    </div>
+                <div className="interaction-count-box">
+                    <InteractionsCounter
+                        postId={post.id}
+                        interaction="Like"
+                        count={post.likedBy.length}
+                    />
+                    <InteractionsCounter
+                        postId={post.id}
+                        interaction="Dislike"
+                        count={post.likedBy.length}
+                    />
                 </div>
 
                 <div className="buttonBox">
-                    <div>
-                        <InteractionsButtons
-                            postId={post.id}
-                            interaction="Like"
-                            posts={posts}
-                            setPosts={setPosts}
-                        />
-                        <InteractionsButtons
-                            postId={post.id}
-                            interaction="Dislike"
-                            posts={posts}
-                            setPosts={setPosts}
-                        />
-                    </div>
+                    <InteractionsButtons
+                        postId={post.id}
+                        interaction="Like"
+                        posts={posts}
+                        setPosts={setPosts}
+                    />
+                    <InteractionsButtons
+                        postId={post.id}
+                        interaction="Dislike"
+                        posts={posts}
+                        setPosts={setPosts}
+                    />
                 </div>
             </div>)
             )}
